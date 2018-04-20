@@ -1,0 +1,7 @@
+_ignore
+_site
+Gruntfile.js
+node_modules
+package.json
+.ipynb_checkpoints
+.jekyll-metadata
