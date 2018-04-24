@@ -8,3 +8,6 @@ author:
   name: Erick Matsen
   url: http://matsen.group/
   email: matsen@fredhutch.org
+
+plugins:
+  - jekyll-feed
