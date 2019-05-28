@@ -13,12 +13,14 @@ We then took a ferry to Tsushima for another week of riding, which was delicious
 If you want to go, here are some tips that might be useful.
 
 
-## Preparation
+## Maps
 We found it very useful to have offline GPS maps with the route marked on the map.
 Although the route is very well signed, there are inevitably times when you've veered off course and need to find your way back.
 I was quite happy with the [Guru Maps](https://gurumaps.app/) app available for iOS and Android.
-[Here](https://www.google.com/maps/d/u/0/viewer?mid=1c4fmoNXFOXrF_ununh61yaKbOPo&hl=en&ll=37.1885848030395%2C127.43622289213869&z=10) are a nice set of waypoints for the trip that you can upload into Guru Maps.
+[Here](https://www.google.com/maps/d/u/0/viewer?mid=1c4fmoNXFOXrF_ununh61yaKbOPo&hl=en&ll=37.1885848030395%2C127.43622289213869&z=10) are a nice set of waypoints for the trip that you can upload into Guru Maps by exporting them as a KML file.
 Note that you will deviate somewhat from these waypoints, say by going on the other side of the river for a stretch, but it's still a useful handrail.
+
+The OpenStreetMap map available through the app was remarkably accurate.
 
 
 ## Travel
@@ -39,9 +41,10 @@ They also have a regular shuttle to and from the airport that has cargo space bi
 The back entrance to the hotel has a nice cement area for assembling bikes.
 
 From the Best Western, you can bike back to the airport (along the maglev train line) in order to take the train into Seoul.
-This section is over water and not bikeable.
-We took the all-stop train to Cheonga International City station, from which you can ride back to the Ara Lock start of the bike trail.
+The trip from the airport to Seoul is over water and not bikeable.
+We took the all-stop train to Cheonga International City station, from which you can ride back to the Ara West Lock start of the bike trail.
 You get on the bike trail _behind_ the Cheonga International City station stop (don't cross the parking lot).
+You can get your stamp book from the information center in that complex.
 
 
 ## Seoul
@@ -51,7 +54,7 @@ The owner Joseph was very kind and allowed us to store our bikes inside during o
 He has fantastic English.
 
 You will find your own delights, but we wouldn't have wanted to miss going to the Changdeokgung palace and its secret garden.
-I'd say that the zillion-dish prix-fixe vegan meal we had at [Sanchon](http://lindagoeseast.com/2017/10/17/sanchon-seouls-famous-vegan-temple-food-restaurant/) near the palace was one of the 5 most memorable meals of my life (though it wasn't exactly a budget meal).
+I'd say that the zillion-dish vegan meal we had at [Sanchon](http://lindagoeseast.com/2017/10/17/sanchon-seouls-famous-vegan-temple-food-restaurant/) near the palace was one of the 5 most memorable meals of my life (though it wasn't exactly a budget meal).
 
 
 ## Riding
@@ -61,7 +64,7 @@ Some of these are quite steep, with grades of 15% and more, so bring your low ge
 
 We rode in April, which had perfect weather: a little cold at the beginning and a little hot at the end.
 It seemed like we had a predominant tailwind going North to South.
-We had two afternoons of hard rain, and that was all.
+We had two afternoons of rain, and that was all.
 
 
 ## Camping
