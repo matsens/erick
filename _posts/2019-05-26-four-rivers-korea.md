@@ -117,6 +117,9 @@ We brought a reasonably beefy cable lock, but would have been fine with a very l
 ## Tsushima, Japan
 Tsushima was stunning.
 The island is jungly forest, interrupted only by picturesque fishing villages in every cove.
+Here's the view from [Mount Eboshi Observatory](https://www.google.com/maps/place/Mount+Eboshi+Observatory/@34.359197,129.3206476,14z/data=!4m5!3m4!1s0x3569761efb81ef63:0x9dfd72a1dffbef4a!8m2!3d34.3733768!4d129.3165761):
+
+![]({{ "/public/images/eboshi-observatory.jpg" | relative_url }})
 
 The home-stays we did here were very special.
 The Japanese use Google Maps, and you can find home-stays by looking for the bed icon.
