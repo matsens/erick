@@ -25,7 +25,8 @@ The OpenStreetMap map available through the app was remarkably accurate.
 
 ## Travel
 We took our bikes on Asiana Airlines, which flew them as baggage without extra charges.
-The bikes were partially disassembled, and then packed into cardboard boxes we got from a bike shop. 
+The bikes were partially disassembled, and then packed into cardboard boxes we got from a bike shop.
+(Protip: get the biggest boxes you can, and don't take off the rear wheel. This will save you from having to take off the derailleur, fenders, etc.)
 We also brought along a trailer for our daughter, which has accessory wheels that allows it to pass as a stroller.
 This allowed us to gate-check the trailer, which was handy in lots of ways.
 Although it's possible to rent bikes and panniers in Seoul, we were happy to have our own kit.
@@ -73,7 +74,7 @@ We mostly camped.
 We enjoyed the campgrounds when they were available, and when they weren't we could always find a spot down by the river.
 Korean fishermen also set up tents by the river making this wild camping somewhat normal.
 Nobody hassled us for camping, but we did still try to stay out of sight in the reeds, just in case.
-Some campgrounds in Tsushima were closed because April was early in their camping season. 
+Some campgrounds in Tsushima were closed because April was early in their camping season.
 
 Although we loved eating in restaurants as much as we could, having a little cooking setup increased our flexibility.
 Propane canisters are easy to find in the larger grocery stores.
