@@ -25,6 +25,7 @@ The OpenStreetMap map available through the app was remarkably accurate.
 
 ## Travel
 We took our bikes on Asiana Airlines, which flew them as baggage without extra charges.
+The bikes were partially disassembled, and then packed into cardboard boxes we got from a bike shop. 
 We also brought along a trailer for our daughter, which has accessory wheels that allows it to pass as a stroller.
 This allowed us to gate-check the trailer, which was handy in lots of ways.
 Although it's possible to rent bikes and panniers in Seoul, we were happy to have our own kit.
@@ -69,8 +70,10 @@ We had two afternoons of rain, and that was all.
 
 ## Camping
 We mostly camped.
-We enjoyed the campgrounds when they were available, and when they weren't we could always find a spot down by the river out of sight in the reeds.
-Korean fishermen also set up tents by the river, and nobody hassled us once.
+We enjoyed the campgrounds when they were available, and when they weren't we could always find a spot down by the river.
+Korean fishermen also set up tents by the river making this wild camping somewhat normal.
+Nobody hassled us for camping, but we did still try to stay out of sight in the reeds, just in case.
+Some campgrounds in Tsushima were closed because April was early in their camping season. 
 
 Although we loved eating in restaurants as much as we could, having a little cooking setup increased our flexibility.
 Propane canisters are easy to find in the larger grocery stores.
@@ -119,12 +122,13 @@ We brought a reasonably beefy cable lock, but would have been fine with a very l
 
 ## Tsushima, Japan
 Tsushima was stunning.
-The island is jungly forest, interrupted only by picturesque fishing villages in every cove.
+The island is a jungly forest, interrupted only by picturesque fishing villages in every cove.
 Here's the view from [Mount Eboshi Observatory](https://www.google.com/maps/place/Mount+Eboshi+Observatory/@34.359197,129.3206476,14z/data=!4m5!3m4!1s0x3569761efb81ef63:0x9dfd72a1dffbef4a!8m2!3d34.3733768!4d129.3165761):
 
 ![]({{ "/public/images/eboshi-observatory.jpg" | relative_url }})
 
-The home-stays we did here were very special.
+The two home-stays we did here were very special.
+The dinners they served us had many interesting dishes, and the raw seafood was particularly notable.
 The Japanese use Google Maps, and you can find home-stays by looking for the bed icon.
 
 There are lots of ferries from the International Ferry Terminal in Busan.
@@ -137,7 +141,7 @@ Getting back, we worked with the super-helpful folks at the tourist information 
 Not all ferry services allow you to take bikes, but DAE-A Express Shipping Co do.
 
 Japan is much more oriented towards cash versus card.
-We didn't have luck at the banks, but the post office ATMs worked great.
+We didn't have luck with the ATMs at banks, but the post office ATMs worked great.
 Get some cash where you can.
 
 There aren't grocery stores everywhere in Tsushima, so stock up when you have the opportunity.
