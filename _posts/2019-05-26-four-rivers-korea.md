@@ -13,6 +13,18 @@ We then took a ferry to Tsushima for another week of riding, which was delicious
 If you want to go, here are some tips that might be useful.
 
 
+## Season
+Air pollution in Korea is [not a joke](https://www.npr.org/sections/parallels/2016/06/03/478796463/koreas-air-is-dirty-but-its-not-all-close-neighbor-chinas-fault).
+The locals say that it's primarily a problem in the spring (and yes, they do blame it on China).
+Doing some web searching I couldn't find compelling evidence that there's a strong seasonality, but it's worth some research.
+Looking retrospectively at the pollution levels for [Seoul](https://air.plumelabs.com/en/year/seoul) and [Busan](https://air.plumelabs.com/en/year/busan) we happened to get lucky with the smog levels for our April 2019 trip.
+The Koreans, including cyclists, frequently wear masks, and you might consider doing the same.
+
+We had perfect weather: a little cold at the beginning and a little hot at the end.
+It seemed like we had a predominant tailwind going North to South.
+We had two afternoons of rain, and that was all.
+
+
 ## Maps
 We found it very useful to have offline GPS maps with the route marked on the map.
 Although the route is very well signed, there are inevitably times when you've veered off course and need to find your way back.
@@ -64,9 +76,6 @@ The riding is mostly on well-paved bike-only trails.
 It's also mostly flat, except for when it's not: there are two biggish climbs and 100 or so shorter inclines when you leave the river.
 Some of these are quite steep, with grades of 15% and more, so bring your low gears.
 
-We rode in April, which had perfect weather: a little cold at the beginning and a little hot at the end.
-It seemed like we had a predominant tailwind going North to South.
-We had two afternoons of rain, and that was all.
 
 
 ## Camping
