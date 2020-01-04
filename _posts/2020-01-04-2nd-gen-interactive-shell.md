@@ -1,7 +1,8 @@
 ---
 layout: post
 title: "Second-generation interactive shell tools"
-category: articles
+image: goodnight-shell.png
+description: "Modern replacements for classic shell tools that we know and love."
 ---
 
 ## Summary
@@ -29,6 +30,8 @@ See [the corresponding GitHub repository](https://github.com/matsen/cozy-demo) i
 
 # tmux
 
+![]({{ "/public/images/goodnight-shell.png" | relative_url }})
+
 When working on a modern desktop computer, it's easy to arrange multiple windows side by side, to switch between applications, etc.
 On the command line this is achieved by use of a "terminal multiplexer".
 This is especially lovely for working on remote machines, where one can detach and re-attach sessions with all their attendant windows.
@@ -50,14 +53,16 @@ Open a few windows, type some commands, cycle through them, open a few panes in 
 
 * `Ctrl-a c` - New window
 * `Ctrl-a <Space>` - Next window
+* `Ctrl-a NUMBER` - Move to window number `NUMBER`
+* `Ctrl-a Ctrl-a` - Move to the most recently visited window
 * `Ctrl-a v` - Split window into panes vertically
 * `Ctrl-a s` - Split window into panes horizontally
 * `Ctrl-a <arrow>` - Move between panes
 * `Ctrl-d` - Close a pane or window (works outside of tmux)
 * `Ctrl-a q` - Kill a pane or window
 
-Hopefully it's clear that the windows are complete environments indicated at the bottom, and the panes are sub-windows that have no associated indicator.
-Each one of these has a shell running inside of it.
+Hopefully it's clear that the windows are complete environments which are indexed at the bottom, and the panes are sub-windows that have no associated indicator.
+Each pane has a shell running inside of it.
 
 The following commands are also essential:
 
@@ -75,14 +80,15 @@ The polite way to detach and reattach is to (try this!)
 * `Ctrl-a d` to detach
 * `tmux attach` to reattach
 
-However, if your wifi drops you might just get disconnected to a remote machine, in which case you wouldn't have the opportunity to politely detach.
-*That's fine.*
-In that case, just re-connect to your remote machine, and `tmux attach`.
-
 Reattaching is also very handy if you are moving between laptops.
 You can detach your remote session from one, log in on another, and then reattach on the second laptop.
 Note that if you have different size terminal windows between the two machines the session can look wonky.
 In that case simply use `tmux attach -d` which will redraw the session.
+
+If your wifi drops you might just get disconnected to a remote machine, in which case you wouldn't have the opportunity to politely detach.
+*That's fine.*
+In that case, just re-connect to your remote machine, and `tmux attach`.
+
 
 Also note that `tmux attach` will fail if you don't have a session open already; if that happens just enter `tmux` to start a new session.
 
@@ -94,8 +100,8 @@ Also note that `tmux attach` will fail if you don't have a session open already;
 * `Ctrl-a +` - move horizontal split up
 * `Ctrl-a =` - move horizontal split down
 
-Note: You can hit `Ctrl-a` once, and press the second key a number of times (or hold it) to do larger resizes.
-For example, try `Ctrl-a <<<<<<<`.
+Note: You can hit `Ctrl-a` once, and press the resize operator a number of times (or hold it) to do larger resizes.
+For example, try `Ctrl-a <<<<`.
 
 
 ### Naming & finding windows
@@ -107,12 +113,15 @@ For example, try `Ctrl-a <<<<<<<`.
 
 ### Scrolling and copy/paste in tmux
 
-When a noisy program floods a tmux pane, your mouse wheel won't let you scroll, like in a normal shell session.
+When you have lots of output, it's nice to be able to scroll up and down through history.
 Pressing `Ctrl-a [` will place you in scroll mode.
 Use can now use arrow keys or `Ctrl-u`/`Ctrl-d` to scroll through the history, and search with `/`.
 
 From this mode, you can also press `Space` to enter copy-mode, `<arrow>` keys to specify a collection, and `Enter` to copy the selection.
 To paste the selection, use `Ctrl-]`.
+
+Note: if you are running tmux 2.1 or greater (check with `tmux -V`) and you really like your mouse scroll wheel, you can try `set -g mouse on` which will drop you into tmux scroll mode when you use the scroll wheel.
+But I suggest keeping your fingers on the keyboard and ignoring the "rat".
 
 
 ### Advanced tmux tips
@@ -217,7 +226,7 @@ For many more uses, including vim integration, see the [fzf](https://github.com/
 # autojump
 
 [autojump](https://github.com/wting/autojump) is a `cd` replacement that learns.
-It keeps a record of where you have been in the past, and given multiple options, chooses the one that you have been in the most.
+It keeps a record of where you have been in the past, and given multiple directories that match an argument, chooses the one that you have been in the most.
 The autojump command is `j`.
 
 For example, I frequently visit our data directory on the shared filesystem at `/fh/fast/matsen_e/data`.
@@ -226,12 +235,13 @@ Instead of typing out that full filename I can just type `j data` to `cd` there.
 This works with partial filenames as well.
 In the example Docker container I have a few directories that have cats in them, and
 
-    j cat
+    j cats
 
-will take you to `/root/cats/siamese-mostpopular`, which is the most popular subdirectory containing `cat`.
+will take you to `/root/cats/siamese-mostpopular`, which is the most popular subdirectory containing `cats`.
 
 If you are in the most popular directory with a certain string, then running the same `j` command will take you to the second most popular.
-For example, repeating `j cat` a second time would take us to `/root/cats/bengal`, which is the subdirectory we've visited the second most.
+For example, repeating `j cats` a second time would take us to `/root/cats/bengal`, which is the subdirectory we've visited the second most.
+(We could have used `cat` here instead of `cats` but I didn't want to confuse things with the `cat` shell command.)
 
 The information about what directories you spend the most time in is stored in `~/.local/share/autojump/autojump.txt`.
 For our example Docker image it looks like this:
@@ -260,7 +270,7 @@ See the [fd GitHub page](https://github.com/sharkdp/fd) for more examples and de
 
 # ag
 
-`ag` is a replacement for `grep` that has a nicer input and output interface.
+`ag` is a faster replacement for `grep` that has a nicer input and output interface.
 
 For example, as I'm writing this might look for instances of the word "fancy".
 Using `ag fancy` gets me:
@@ -297,7 +307,8 @@ See the [ag GitHub page](https://github.com/ggreer/the_silver_searcher) for more
 # Conclusion and future directions
 
 We've looked at a few tools that can help make it easier to interact with the shell.
-We haven't looked at what shell to use.
+
+We haven't considered the shell itself.
 If you spend a lot of time in the shell, you might consider [zsh](https://en.wikipedia.org/wiki/Z_shell) or [fish](https://fishshell.com/).
 
 ---
