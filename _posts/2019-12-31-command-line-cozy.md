@@ -1,16 +1,16 @@
 ---
 layout: post
-title: "Second-generation shell interaction"
+title: "Second-generation interactive shell tools"
 category: articles
 ---
 
 ## Summary
 
-* rather than naked shell, [try](#tmux) `tmux`
-* rather than local directory navigation, [try](#fzf) `fzf`
-* rather than `cd`, try `autojump`
-* rather than `find`, [try](#fd) `fd`
-* rather than `grep`, try `ag`
+* rather than naked shell, [try](#tmux) `tmux` for an organized collection of shells
+* rather than local file system navigation, [try](#fzf) `fzf` to fuzzily find what you want
+* rather than `cd`, [try](#autojump) `autojump`, which remembers your favorite locations
+* rather than `find`, [try](#fd) `fd`, which has a much cleaner interface
+* rather than `grep`, [try](#ag) `ag`, which is simpler and faster
 
 
 ## Introduction
@@ -22,20 +22,20 @@ If you want to try out these tools, you can run
     docker run -t quay.io/matsen/cozy-demo
 
 to test them out in Docker.
-There is some funkiness with this Docker image (the pane splits use hashes and q's to divide the pane) but it's enough to get the idea.
-See [the corresponding GitHub repository](https://github.com/matsen/cozy-demo) if you like the configuration and want to use it for your setup.
+There is some funkiness with the display on this Docker image (tmux pane splits use hashes and q's) but it's enough to get the idea.
+See [the corresponding GitHub repository](https://github.com/matsen/cozy-demo) if you want to mimic the configuration.
 
 
 
-## tmux
+# tmux
 
 When working on a modern desktop computer, it's easy to arrange multiple windows side by side, to switch between applications, etc.
 On the command line this is achieved by use of a "terminal multiplexer".
-This is absolutely essential for working on remote machines, where one can detach and re-attach sessions with all their attendant windows.
+This is especially lovely for working on remote machines, where one can detach and re-attach sessions with all their attendant windows.
 
 The two most popular terminal multiplexers are [GNU Screen](https://www.gnu.org/software/screen/manual/screen.html) and [tmux](https://github.com/tmux/tmux/wiki).
 This tutorial will demonstrate `tmux`, which is newer and more feature-rich.
-We will also use our (non-default) configuration.
+We will also use our (non-default) configuration, which is vi-keybinding oriented (emacs-style keybindings are also available).
 
 You send commands to these programs using a "prefix" key command followed by another keystroke.
 In our configuration, the prefix is `Ctrl-a`, the most easily typed control combination.
@@ -53,7 +53,7 @@ Open a few windows, type some commands, cycle through them, open a few panes in 
 * `Ctrl-a v` - Split window into panes vertically
 * `Ctrl-a s` - Split window into panes horizontally
 * `Ctrl-a <arrow>` - Move between panes
-* `Ctrl-d` - Close a pane or window
+* `Ctrl-d` - Close a pane or window (works outside of tmux)
 * `Ctrl-a q` - Kill a pane or window
 
 Hopefully it's clear that the windows are complete environments indicated at the bottom, and the panes are sub-windows that have no associated indicator.
@@ -79,7 +79,7 @@ However, if your wifi drops you might just get disconnected to a remote machine,
 *That's fine.*
 In that case, just re-connect to your remote machine, and `tmux attach`.
 
-This is also very handy if you are moving between laptops.
+Reattaching is also very handy if you are moving between laptops.
 You can detach your remote session from one, log in on another, and then reattach on the second laptop.
 Note that if you have different size terminal windows between the two machines the session can look wonky.
 In that case simply use `tmux attach -d` which will redraw the session.
@@ -94,14 +94,14 @@ Also note that `tmux attach` will fail if you don't have a session open already;
 * `Ctrl-a +` - move horizontal split up
 * `Ctrl-a =` - move horizontal split down
 
-Note: You can click `Ctrl-a` once, and press the second key a number of times (or hold it) to do larger resizes
+Note: You can hit `Ctrl-a` once, and press the second key a number of times (or hold it) to do larger resizes.
+For example, try `Ctrl-a <<<<<<<`.
 
 
 ### Naming & finding windows
 
 * `Ctrl-a ,` will let you name a window
-* `Ctrl-a '` presents a list of windows (by name)
-  * `<arrow>` and `Enter` to switch to a window
+* `Ctrl-a '` presents a list of windows (by name), which you can choose from by `<arrow>` and `Enter` to switch to a window
 * `Ctrl-a <numeric>` switches to a window by number.
 
 
@@ -119,7 +119,7 @@ To paste the selection, use `Ctrl-]`.
 
 You can also use `h`, `j`, `k`, and `l` in place of the arrow keys, as in `vim`.
 
-If you want to pipe to the tmux buffer, try this alias:
+If you want to pipe to the tmux copy/paste buffer, try this alias:
 
     alias tc='tmux loadb -'
 
@@ -142,11 +142,23 @@ Sometimes it seems that ssh connections inside those sessions need a little refr
 For that I use [this shell command](https://gist.github.com/matsen/b121999f861cd001c6814a20d032fa53).
 
 
-## fzf
+### You can get fancy with tmux
 
-We all love tab completion.
+Some people love complex tmux setups with tons of sub-panes with things running in them.
+I prefer to have a simple setup where things can get set up and torn down easily.
+If you like a fancy setup, you can use something like [tmux-resurrect](https://github.com/tmux-plugins/tmux-resurrect) to maintain such setups on your local machine between reboots.
+There are also tmux plugin managers, etc, but just a simple configuration file is all I've needed.
+
+You can also have lots of different detached sessions, give them names, etc.
+I used to do this, with each session corresponding to a single project.
+For me it ended up being too much work to manage, but perhaps it fits for you.
+
+
+# fzf
+
+We all love tab completion for matching files.
 But sometimes it too can be painful.
-Consider this list of files, which is the various posts that have appeared on fredhutch.io:
+Consider this list of files, which is some the various posts that have appeared on [fredhutch.io](http://fredhutch.io):
 
 ```
 2014-04-24-command-line.md        2015-04-06-R-sequence-analysis.md
@@ -202,14 +214,14 @@ Here are two very easy ways to get started with fzf:
 For many more uses, including vim integration, see the [fzf](https://github.com/junegunn/fzf) GitHub page.
 
 
-## autojump
+# autojump
 
 [autojump](https://github.com/wting/autojump) is a `cd` replacement that learns.
 It keeps a record of where you have been in the past, and given multiple options, chooses the one that you have been in the most.
 The autojump command is `j`.
 
 For example, I frequently visit our data directory on the shared filesystem at `/fh/fast/matsen_e/data`.
-Instead of typing out that full filename I can just type `j data`.
+Instead of typing out that full filename I can just type `j data` to `cd` there.
 
 This works with partial filenames as well.
 In the example Docker container I have a few directories that have cats in them, and
@@ -219,10 +231,20 @@ In the example Docker container I have a few directories that have cats in them,
 will take you to `/root/cats/siamese-mostpopular`, which is the most popular subdirectory containing `cat`.
 
 If you are in the most popular directory with a certain string, then running the same `j` command will take you to the second most popular.
-For example, repeating `j cat` a second time would take us to `/root/cats/bengal`.
+For example, repeating `j cat` a second time would take us to `/root/cats/bengal`, which is the subdirectory we've visited the second most.
+
+The information about what directories you spend the most time in is stored in `~/.local/share/autojump/autojump.txt`.
+For our example Docker image it looks like this:
+
+    50.0	/root/cats/siamese-mostpopular
+    30.0	/root/cats/siamese-lesspopular
+    40.0	/root/cats/bengal
+    10.0	/root/work
+
+The left-hand column here is the popularity index and the right hand is the directory.
 
 
-## fd
+# fd
 
 [GNU Find](https://www.gnu.org/software/findutils/manual/html_mono/find.html) is incredibly powerful, but has an annoying interface.
 The `fd` command fixes that.
@@ -236,168 +258,49 @@ The `fd` command has sensible defaults for the modern environment, such as ignor
 See the [fd GitHub page](https://github.com/sharkdp/fd) for more examples and detail.
 
 
-## grep & friends
+# ag
 
-Moving on to finding files by their content, the first step is the classic `grep`.
+`ag` is a replacement for `grep` that has a nicer input and output interface.
 
-To find occurrences of the string "smooshable" in any file contained in the current directory, just write
+For example, as I'm writing this might look for instances of the word "fancy".
+Using `ag fancy` gets me:
 
-```
-grep -R smooshable
-```
+    _posts/2019-11-05-travis.md
+    22:It can do all sorts of fancy pipelines, but here we'll just get it to do one simple thing: run a command in a Docker container.
 
-where the `-R` is for recursive search across the directory tree.
+    _posts/2019-12-31-command-line-cozy.md
+    145:### You can get fancy with tmux
+    149:If you like a fancy setup, you can use something like [tmux-resurrect](https://github.com/tmux-plugins/tmux-resurrect) to maintain such setups on your local machine between reboots.
 
-I don't actually use recursive grep much.
-If I'm looking for something in a git repository I use `git grep`:
+which shows clearly that this word appeared once in a post about Travis, and twice in this file (before I wrote this section).
 
-```
-git grep smooshable
-```
+In contrast, we can try the same thing using `grep -r fancy`
 
-which is fast and tidier because it doesn't find things in the `.git` directory, etc.
+    _posts/2019-11-05-travis.md:It can do all sorts of fancy pipelines, but here we'll just get it to do one simple thing: run a command in a Docker container.
+    _posts/2019-12-31-command-line-cozy.md:### You can get fancy with tmux
+    _posts/2019-12-31-command-line-cozy.md:If you like a fancy setup, you can use something like [tmux-resurrect](https://github.com/tmux-plugins/tmux-resurrect) to maintain such setups on your local machine between reboots.
+    _site/feed.xml:&lt;h3 id=&quot;you-can-get-fancy-with-tmux&quot;&gt;You can get fancy with tmux&lt;/h3&gt;
+    _site/feed.xml:If you like a fancy setup, you can use something like &lt;a href=&quot;https://github.com/tmux-plugins/tmux-resurrect&quot;&gt;tmux-resurrect&lt;/a&gt; to maintain such setups on your local machine between reboots.
+    _site/feed.xml:It can do all sorts of fancy pipelines, but here we’ll just get it to do one simple thing: run a command in a Docker container.&lt;/p&gt;
+    _site/2019/11/05/travis.html:It can do all sorts of fancy pipelines, but here we’ll just get it to do one simple thing: run a command in a Docker container.</p>
+    _site/articles/2019/12/31/command-line-cozy.html:<h3 id="you-can-get-fancy-with-tmux">You can get fancy with tmux</h3>
+    _site/articles/2019/12/31/command-line-cozy.html:If you like a fancy setup, you can use something like <a href="https://github.com/tmux-plugins/tmux-resurrect">tmux-resurrect</a> to maintain such setups on your local machine between reboots.
 
-If I have a lot of big files to search through, [ag, the silver searcher](https://github.com/ggreer/the_silver_searcher) is a great tool.
-It searches recursively by default, so in this example
+First, things aren't as nicely organized into sections.
+Second, grep looks into all of the files, including the ones that are in `.gitignore`.
+The git-ignored files in `_site` are auto-generated and they only add noise to my search.
 
-```
-ag smooshable
-```
-
-will get you a nicely formatted list of instances.
-Note that ag also has lots of nice editor integrations.
-
-
-
-
-## History
-
-Your "history" is the list of commands you have entered.
-The easiest way to get back in your history is just to hit the up arrow.
-Repeatedly hitting up arrow will take you back in time, while down arrow takes you forward in time.
-When we see a command that we like, we can hit `Return` to execute that command, or use the left and right arrow keys to move to a place where we can edit it.
-
-Here are some commands to help you browse that history:
-
-* `history`: gives the full history; likely to be too much too be useful
-* `history | tail`: the history truncated to the most recent commands
-* `history | less`: history made more navigable
-
-You can also search through your history.
-Hitting `Ctrl-r` brings up reverse interactive search.
-In this example, I typed `tags`, which brings up the most recent command containing the string `tags`:
-
-```
-$ git describe --tags --long
-bck-i-search: tags_
-```
-
-You can cycle through earlier commands by hitting `Ctrl-r` again.
-If you want to cancel your reverse search, use `Ctrl-g`.
-
-It appears that OS X truncates your history at a measly 500 lines.
-Phooey on that!
-Put this in your `.bashrc` to get an unlimited history:
-
-```
-export HISTFILESIZE=
-export HISTSIZE=
-```
-
-More about your `.bashrc` below.
-Note that [this isn't a perfect solution and a better one exists](http://superuser.com/a/664061), but it's good enough.
-
-### The last word in history
-
-There is a very handy trick to go cycle through the last words in your history.
-Say I'm doing the following:
-
-```
-git add horribly/long/path/to/file.txt
-git status
-```
-
-and now I remember I wanted to make one more modification to `horribly/long/path/to/file.txt`.
-One can hit the up arrow two times and then replace `git add` with an invocation of an editor.
-
-But there's something slicker.
-`Alt-.` cycles through the previous last words in the command history and puts them on the command line.
-In this example, I could say `vi ` `Alt-.` `Alt-.` and `vi horribly/long/path/to/file.txt` would result.
-
-For the OS X fans out there, you will use `Option` in place of `Alt`, which may require [some configuration](http://osxdaily.com/2013/02/01/use-option-as-meta-key-in-mac-os-x-terminal/) (note `Meta` is another name for `Alt` in this context).
+`ag` is also very fast and has lots of nice editor integrations.
+See the [ag GitHub page](https://github.com/ggreer/the_silver_searcher) for more details.
 
 
+# Conclusion and future directions
 
+We've looked at a few tools that can help make it easier to interact with the shell.
+We haven't looked at what shell to use.
+If you spend a lot of time in the shell, you might consider [zsh](https://en.wikipedia.org/wiki/Z_shell) or [fish](https://fishshell.com/).
 
-## Interacting with the web
+---
 
-To get something off the web, use `wget` and then the web address.
-This is handy in combination with the "raw" address for files on GitHub (available as a button on the right hand side of a file's page), e.g.:
-
-```
-wget https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh
-```
-
-Another related tool is [curl](https://curl.haxx.se/docs/manual.html), which is quite powerful.
-
-If you actually have to interact with the web via the command line, you can always use `lynx`.
-If you want to watch nyan cat, you can do so by executing
-
-```
-telnet nyancat.dakko.us
-```
-
-
-## Customization
-
-If you want to customize the way your shell works, you need to run certain programs each time your shell starts.
-If you use bash (and you probably use bash if you don't know what shell you use) then you can run these programs by putting them in your `.bashrc`.
-Perhaps you already know about this file for modifying your `PATH` variable.
-
-For example, here are a few of my favorite aliases:
-
-```
-alias lst='ls -clth | head'
-alias ll='ls -lh'
-alias path='readlink -f'
-```
-
-If I want those to be there every time I log in, I want to put those lines in my `.bashrc`.
-
-
-### Git prompt
-
-I don't mind what shells or editors people in my group use, but I really feel strongly that everyone should use a shell prompt that displays information about git status.
-Not having this inevitably leads to confusion with partial commits.
-
-The git folks understand this and have made a [git prompt script](https://github.com/git/git/blob/master/contrib/completion/git-prompt.sh).
-Bash folks: you can grab this using the wget command above, move it to `~/.git-prompt.sh`, and throw this in your `.bashrc`:
-
-```
-source ~/.git-prompt.sh
-export GIT_PS1_SHOWDIRTYSTATE=1
-export GIT_PS1_SHOWUNTRACKEDFILES=1
-PS1='[\u@\h \W$(__git_ps1 " (%s)")]\$ '
-```
-
-If you use zsh you probably have all of this configured, but I'd suggest trying out [antigen](https://github.com/zsh-users/antigen) which has a plugin system making all this trivial.
-
-
-## Moving around
-
-We all know and love `cd`, but moving around with raw `cd` can get tedious.
-First a few little tricks:
-
-* `cd`: moves you back to your home directory
-* `cd -`: moves you back to your previous location
-
-But still, getting deep in a directory tree takes a lot of typing and/or tab completion.
-For this reason, I use [autojump](https://github.com/wting/autojump), which remembers where you've been so you can move around more quickly.
-Before you install that tool, though, take a look at the next section, which also offers a faster way to navigate deep in directory trees.
-
-
-
-
-If you aren't yet familiar with the shell, try the two-session [shell tutorial](https://github.com/fredhutchio/tfcb_2019/tree/master/lectures/lecture09) I taught as part of a class for Fred Hutch for UW MCB students.
-
-
+Thank you to [Chris Small](https://github.com/metasoarous) and [Connor McCoy](https://github.com/cmccoy), two previous group members who pointed me to some of these tools.
+Chris wrote the first version of the section on tmux.
