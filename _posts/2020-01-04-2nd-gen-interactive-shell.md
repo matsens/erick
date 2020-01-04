@@ -2,7 +2,7 @@
 layout: post
 title: "Second-generation interactive shell tools"
 image: goodnight-shell.png
-description: "Modern replacements for classic shell tools that we know and love."
+description: "Modern replacements for classic interactive shell commands."
 ---
 
 ## Summary
