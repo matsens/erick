@@ -8,7 +8,7 @@ description: "Modern replacements for classic interactive shell commands."
 ## Summary
 
 * rather than naked shell, [try](#tmux) `tmux` for an organized collection of shells
-* rather than local file system navigation, [try](#fzf) `fzf` to fuzzily find what you want
+* rather than local file system navigation, [try](#fzf) `fzf` to fuzzily get what you want
 * rather than `cd`, [try](#autojump) `autojump`, which remembers your favorite locations
 * rather than `find`, [try](#fd) `fd`, which has a much cleaner interface
 * rather than `grep`, [try](#ag) `ag`, which is simpler and faster
@@ -16,7 +16,7 @@ description: "Modern replacements for classic interactive shell commands."
 
 ## Introduction
 
-The default shell environment is tremendously productive, but "second generation" tools can make it even more so.
+The built-in shell environment is tremendously productive, but "second generation" tools can make it even more so.
 
 If you want to try out these tools, you can run
 
@@ -51,23 +51,23 @@ We will abbreviate this combination `Ctrl-a c`.
 As a first step, I suggest just starting up tmux by executing `tmux` and trying out the following commands.
 Open a few windows, type some commands, cycle through them, open a few panes in a single window, and move around through them.
 
-* `Ctrl-a c` - New window
-* `Ctrl-a <Space>` - Next window
-* `Ctrl-a NUMBER` - Move to window number `NUMBER`
-* `Ctrl-a Ctrl-a` - Move to the most recently visited window
-* `Ctrl-a v` - Split window into panes vertically
-* `Ctrl-a s` - Split window into panes horizontally
-* `Ctrl-a <arrow>` - Move between panes
-* `Ctrl-d` - Close a pane or window (works outside of tmux)
-* `Ctrl-a q` - Kill a pane or window
+* `Ctrl-a c` &nbsp; New window
+* `Ctrl-a <Space>` &nbsp; Next window
+* `Ctrl-a NUMBER` &nbsp; Move to window number `NUMBER`
+* `Ctrl-a Ctrl-a` &nbsp; Move to the previously visited window
+* `Ctrl-a v` &nbsp; Split window into panes vertically
+* `Ctrl-a s` &nbsp; Split window into panes horizontally
+* `Ctrl-a <arrow>` &nbsp; Move between panes
+* `Ctrl-d` &nbsp; Close a pane or window (works outside of tmux)
+* `Ctrl-a q` &nbsp; Kill a pane or window
 
 Hopefully it's clear that the windows are complete environments which are indexed at the bottom, and the panes are sub-windows that have no associated indicator.
 Each pane has a shell running inside of it.
 
 The following commands are also essential:
 
-* `Ctrl-a ?` - Command help. Note that `/` will allow you to search.
-* `Ctrl-a a` - Actually send a `Ctrl-a` to the terminal (e.g. to move to the beginning of the line when editing a shell command)
+* `Ctrl-a ?` &nbsp; Command help. Note that `/` will allow you to search.
+* `Ctrl-a a` &nbsp; Actually send a `Ctrl-a` to the terminal (e.g. to move to the beginning of the line when editing a shell command)
 
 
 ### Detaching and attaching a session
@@ -77,8 +77,8 @@ This is called detaching and reattaching.
 
 The polite way to detach and reattach is to (try this!)
 
-* `Ctrl-a d` to detach
-* `tmux attach` to reattach
+* `Ctrl-a d` &nbsp; Detach
+* `tmux attach` &nbsp; Reattach
 
 Reattaching is also very handy if you are moving between laptops.
 You can detach your remote session from one, log in on another, and then reattach on the second laptop.
@@ -95,10 +95,10 @@ Also note that `tmux attach` will fail if you don't have a session open already;
 
 ### Resizing panes
 
-* `Ctrl-a <` - move vertical split left
-* `Ctrl-a >` - move vertical split right
-* `Ctrl-a +` - move horizontal split up
-* `Ctrl-a =` - move horizontal split down
+* `Ctrl-a <` &nbsp; Move vertical split left
+* `Ctrl-a >` &nbsp; Move vertical split right
+* `Ctrl-a +` &nbsp; Move horizontal split up
+* `Ctrl-a =` &nbsp; Move horizontal split down
 
 Note: You can hit `Ctrl-a` once, and press the resize operator a number of times (or hold it) to do larger resizes.
 For example, try `Ctrl-a <<<<`.
@@ -106,18 +106,19 @@ For example, try `Ctrl-a <<<<`.
 
 ### Naming & finding windows
 
-* `Ctrl-a ,` will let you name a window
-* `Ctrl-a '` presents a list of windows (by name), which you can choose from by `<arrow>` and `Enter` to switch to a window
-* `Ctrl-a <numeric>` switches to a window by number.
+* `Ctrl-a ,` &nbsp; Name a window
+* `Ctrl-a '` &nbsp; Present a list of windows (by name), which you can choose from by `<arrow>` and `Enter` to switch to a window
+* `Ctrl-a <numeric>` &nbsp; Switch to a window by number.
 
 
 ### Scrolling and copy/paste in tmux
 
 When you have lots of output, it's nice to be able to scroll up and down through history.
 Pressing `Ctrl-a [` will place you in scroll mode.
-Use can now use arrow keys or `Ctrl-u`/`Ctrl-d` to scroll through the history, and search with `/`.
+Use can now use arrow keys, PageUp/PageDown keys, or `Ctrl-u`/`Ctrl-d` to scroll through the history.
+You can search up through history with `?` and down with `/`.
 
-From this mode, you can also press `Space` to enter copy-mode, `<arrow>` keys to specify a collection, and `Enter` to copy the selection.
+From this mode, you can also press `Space` to enter copy-mode, arrow keys to specify a selection range, and `Enter` to copy the selection.
 To paste the selection, use `Ctrl-]`.
 
 Note: if you are running tmux 2.1 or greater (check with `tmux -V`) and you really like your mouse scroll wheel, you can try `set -g mouse on` which will drop you into tmux scroll mode when you use the scroll wheel.
@@ -195,9 +196,9 @@ Consider this list of files, which is some the various posts that have appeared 
 
 to tab-complete through these files is a pain, because I actually want to choose a file by the text portion of the descriptor, which is past the date.
 
-Thus we can use _fuzzy finding_, which allows us to use arbitrary substrings to find what I want.
-This is available [in GitHub](https://github.com/blog/793-introducing-the-file-finder) for finding files, and actually even in the Chrome address bar.
-With fuzzy finding, you can just type substrings of your desired string and the matcher will find items that contain those substrings.
+What we really want is _fuzzy finding_, which allows us to match via partial substring matches.
+By this I mean that arbitrary substrings of your query string get matched with arbitrary substrings of your target strings, in an ordered fashion (see below for an example).
+This is available [as part of the GitHub web interface](https://github.com/blog/793-introducing-the-file-finder) for finding files, and actually even in the Chrome address bar.
 
 [fzf](https://github.com/junegunn/fzf) brings fuzzy finding to the shell.
 For example, if I want the posts from 2015 that contain `galaxy`, I could type `2015galaxy`, and 💥:
@@ -212,13 +213,16 @@ For example, if I want the posts from 2015 that contain `galaxy`, I could type `
 > 2015galaxy
 ```
 
-we get a list of the files that contain `2015` and `galaxy`.
+we get a list of the files that contain `201` `5` and `galaxy`.
 In fact, I could have typed `15axy` and gotten the same result, because it matches the same set of files.
+I can then type more characters to limit the search, or use the arrow keys to move between results, and then return to select.
+Note that there is a "false positive" here, namely `2014-05-09-galaxy.md` which is from 2014 but has a 5 in the month.
+That's just a natural consequence of the way fuzzy finding works.
 
-Here are two very easy ways to get started with fzf:
+Here are two very easy ways to get started with fzf from the shell:
 
 * `Ctrl-t` drops you into the fzf fuzzy command completer from the shell prompt. For example, `less Ctrl-t` will allow you to find the file that you want to `less`.
-* `Ctrl-r` does reverse search on your history
+* `Ctrl-r`, the usual reverse search on your history, gets replaced by the fuzzified version. This is great and allows you to be vague about what you're looking for.
 
 For many more uses, including vim integration, see the [fzf](https://github.com/junegunn/fzf) GitHub page.
 
@@ -241,7 +245,7 @@ will take you to `/root/cats/siamese-mostpopular`, which is the most popular sub
 
 If you are in the most popular directory with a certain string, then running the same `j` command will take you to the second most popular.
 For example, repeating `j cats` a second time would take us to `/root/cats/bengal`, which is the subdirectory we've visited the second most.
-(We could have used `cat` here instead of `cats` but I didn't want to confuse things with the `cat` shell command.)
+(We could have used `cat` here as the argument to `j` instead of `cats` but I didn't want to confuse things with the `cat` shell command.)
 
 The information about what directories you spend the most time in is stored in `~/.local/share/autojump/autojump.txt`.
 For our example Docker image it looks like this:
@@ -272,7 +276,7 @@ See the [fd GitHub page](https://github.com/sharkdp/fd) for more examples and de
 
 `ag` is a faster replacement for `grep` that has a nicer input and output interface.
 
-For example, as I'm writing this might look for instances of the word "fancy".
+For example, as I'm writing this I might look for instances of the word "fancy" in the repository for this blog.
 Using `ag fancy` gets me:
 
     _posts/2019-11-05-travis.md
@@ -311,7 +315,10 @@ We've looked at a few tools that can help make it easier to interact with the sh
 We haven't considered the shell itself.
 If you spend a lot of time in the shell, you might consider [zsh](https://en.wikipedia.org/wiki/Z_shell) or [fish](https://fishshell.com/).
 
+Or you could just be happy with the defaults.
+Every minute you spend tweaking your configuration is a minute you aren't doing creative and beautiful things.
+
 ---
 
 Thank you to [Chris Small](https://github.com/metasoarous) and [Connor McCoy](https://github.com/cmccoy), two previous group members who pointed me to some of these tools.
-Chris wrote the first version of the section on tmux.
+Chris wrote parts of the section on tmux as part of his course material for [fredhutch.io](http://fredhutch.io).
