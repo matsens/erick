@@ -237,11 +237,7 @@ For example, I frequently visit our data directory on the shared filesystem at `
 Instead of typing out that full filename I can just type `j data` to `cd` there.
 
 This works with partial filenames as well.
-In the example Docker container I have a few directories that have cats in them, and
-
-    j cats
-
-will take you to `/root/cats/siamese-mostpopular`, which is the most popular subdirectory containing `cats`.
+In the example Docker container I have a few directories that have cats in them, and `j cats` will take you to `/root/cats/siamese-mostpopular`, which is the most popular subdirectory containing `cats`.
 
 If you are in the most popular directory with a certain string, then running the same `j` command will take you to the second most popular.
 For example, repeating `j cats` a second time would take us to `/root/cats/bengal`, which is the subdirectory we've visited the second most.
