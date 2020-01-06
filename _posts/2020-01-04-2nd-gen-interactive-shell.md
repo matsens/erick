@@ -20,7 +20,7 @@ The built-in shell environment is tremendously productive, but "second generatio
 
 If you want to try out these tools, you can run
 
-    docker run -t quay.io/matsen/cozy-demo
+    docker run -it quay.io/matsen/cozy-demo
 
 to test them out in Docker.
 There is some funkiness with the display on this Docker image (tmux pane splits use hashes and q's) but it's enough to get the idea.
