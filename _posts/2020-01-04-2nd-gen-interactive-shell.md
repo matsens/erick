@@ -83,7 +83,7 @@ The polite way to detach and reattach is to (try this!)
 Reattaching is also very handy if you are moving between laptops.
 You can detach your remote session from one, log in on another, and then reattach on the second laptop.
 Note that if you have different size terminal windows between the two machines the session can look wonky.
-In that case simply use `tmux attach -d` which will redraw the session.
+In that case simply use `tmux attach -d`, which will "steal" the session from any other login shell and redraw the session from scratch.
 
 If your wifi drops you might just get disconnected to a remote machine, in which case you wouldn't have the opportunity to politely detach.
 *That's fine.*
