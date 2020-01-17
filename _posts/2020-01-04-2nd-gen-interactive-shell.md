@@ -119,7 +119,7 @@ Use can now use arrow keys, PageUp/PageDown keys, or `Ctrl-u`/`Ctrl-d` to scroll
 You can search up through history with `?` and down with `/`.
 
 From this mode, you can also press `Space` to enter copy-mode, arrow keys to specify a selection range, and `Enter` to copy the selection.
-To paste the selection, use `Ctrl-]`.
+To paste the selection, use `Ctrl-a ]`.
 
 Note: if you are running tmux 2.1 or greater (check with `tmux -V`) and you really like your mouse scroll wheel, you can try `set -g mouse on` which will drop you into tmux scroll mode when you use the scroll wheel.
 But I suggest keeping your fingers on the keyboard and ignoring the "rat".
