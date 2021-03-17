@@ -38,7 +38,8 @@ This is especially lovely for working on remote machines, where one can detach a
 
 The two most popular terminal multiplexers are [GNU Screen](https://www.gnu.org/software/screen/manual/screen.html) and [tmux](https://github.com/tmux/tmux/wiki).
 This tutorial will demonstrate `tmux`, which is newer and more feature-rich.
-We will also use our (non-default) configuration, which is vi-keybinding oriented (emacs-style keybindings are also available).
+**Note that the example commands below use the configuration described in the above-mentioned GitHub repository.**
+This configuration is vi-keybinding oriented (emacs-style keybindings are also available).
 
 You send commands to these programs using a "prefix" key command followed by another keystroke.
 In our configuration, the prefix is `Ctrl-a`, the most easily typed control combination.
